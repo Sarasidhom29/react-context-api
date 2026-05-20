@@ -1,6 +1,6 @@
 import ProductList from "../components/ProductList";
 import { useContext } from "react";
-import { BudgetContext } from "../context/BudgetContext.jsx";
+import { BudgetContext } from "../contexts/BudgetContext.jsx";
 
 function Prodotti({ productList }) {
   const { budgetMode } = useContext(BudgetContext);

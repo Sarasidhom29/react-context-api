@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import { useContext } from "react";
-import { BudgetContext } from "../context/BudgetContext.jsx";
+import { BudgetContext } from "../contexts/BudgetContext.jsx";
 
 function Navbar() {
   const { budgetMode, setBudgetMode } = useContext(BudgetContext);

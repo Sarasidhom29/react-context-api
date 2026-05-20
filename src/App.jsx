@@ -6,7 +6,7 @@ import Prodotti from "./pages/Prodotti.jsx";
 import LayoutPage from "./layouts/LayoutPage.jsx";
 import dreamTeam from "./data/dreamTeam.js";
 import useFetch from "./hooks/useFetch.js";
-import { BudgetProvider } from "./context/BudgetContext.jsx";
+import { BudgetProvider } from "./contexts/BudgetContext.jsx";
 
 function App() {
   const fakeEcomUrl = "https://fakestoreapi.com/products";
