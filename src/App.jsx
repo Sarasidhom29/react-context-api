@@ -1,21 +1,42 @@
-import { BrowserRouter, Route, Routes } from "react-router";
-import { ThemeProvider } from "./contexts/ThemeContext";
-import MainLayout from "./layouts/MainLayout";
-import HomePage from "./pages/HomePage";
-import NotFound from "./pages/NotFound";
+import { BrowserRouter, Routes, Route } from "react-router";
+import NotFound from "./pages/NotFound.jsx";
+import Homepage from "./pages/Homepage.jsx";
+import ChiSiamo from "./pages/ChiSiamo.jsx";
+import Prodotti from "./pages/Prodotti.jsx";
+import LayoutPage from "./layouts/LayoutPage.jsx";
+import dreamTeam from "./data/dreamTeam.js";
+import useFetch from "./hooks/useFetch.js";
+import { BudgetProvider } from "./context/BudgetContext.jsx";
 
 function App() {
+  const fakeEcomUrl = "https://fakestoreapi.com/products";
+
+  const data = useFetch(fakeEcomUrl);
+  if (!data)
+    return (
+      <div className="text-center py-5">Caricamento prodotti...</div>
+    );
+
   return (
-    <ThemeProvider>
+    <BudgetProvider>
       <BrowserRouter>
         <Routes>
-          <Route element={<MainLayout />}>
-            <Route index element={<HomePage />} />
-            <Route path="*" element={<NotFound />} />
+          <Route element={<LayoutPage />}>
+            {/* http://localhost:5173/ */}
+            <Route path="" element={<Homepage />} />
+
+            {/* http://localhost:5173/chi-siamo */}
+            <Route path="chi-siamo" element={<ChiSiamo members={dreamTeam} />} />
+
+            {/* http://localhost:5173/prodotti */}
+            <Route path="prodotti" element={<Prodotti productList={data} />} />
           </Route>
+          {/* Pagina non trovata */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-    </ThemeProvider>
+    </BudgetProvider>
   );
 }
+
 export default App;
